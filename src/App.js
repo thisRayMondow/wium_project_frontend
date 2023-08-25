@@ -5,18 +5,19 @@ import WIUM_HEADER_2 from './WIUM_COMPONENTS/WIUM_HEADER_2';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <>
+      <header className="bg-primary text-white text-center">
           <WIUM_HEADER_2 />
-          <section>        
-            <WIUM_DEPT />
-          </section>
       </header>
 
-      <footer style={{ textAlign: 'center', color: '#000', fontWeight: 'bold' }}>
-        <p><u>&copy; 2023 WIUM, Jakarta Selatan</u></p>
+      <section className='bg-primary text-white'>
+        <WIUM_DEPT />
+      </section>
+
+      <footer className="text-center">        
+        <p className="mb-0"><u>&copy; 2023 WIUM, Jakarta Selatan</u></p>
       </footer>
-    </div>
+    </>
   );
 }
 
