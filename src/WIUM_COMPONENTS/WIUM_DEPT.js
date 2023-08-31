@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import SHIELD from '../WIUM_SHIELD/SHIELD';
 
 const WIUM_DEPT = () => {
   const rows = [
@@ -8,18 +10,6 @@ const WIUM_DEPT = () => {
       { id: 3, link: '#', dept: 'UNIVERSITAS SURYA NUSANTARA', kode: 'C12-USN' },
       { id: 4, link: '#', dept: 'CENTRAL JAVA MISSION', kode: 'A55-DJKT' }
     ],
-    // [
-    //   { id: 1, link: '#', dept: 'WEST INDONESIA UNION MISSION', kode: 'A90-UIKB' },
-    //   { id: 2, link: '#', dept: 'NORTH SUMATRA MISSION', kode: 'A10-DSKU' },
-    //   { id: 3, link: '#', dept: 'UNIVERSITAS SURYA NUSANTARA', kode: 'C12-USN' },
-    //   { id: 4, link: '#', dept: 'CENTRAL JAVA MISSION', kode: 'A55-DJKT' }
-    // ],
-    // [
-    //   { id: 1, link: '#', dept: 'WEST INDONESIA UNION MISSION', kode: 'A90-UIKB' },
-    //   { id: 2, link: '#', dept: 'NORTH SUMATRA MISSION', kode: 'A10-DSKU' },
-    //   { id: 3, link: '#', dept: 'UNIVERSITAS SURYA NUSANTARA', kode: 'C12-USN' },
-    //   { id: 4, link: '#', dept: 'CENTRAL JAVA MISSION', kode: 'A55-DJKT' }
-    // ],
   ];
 
   return (
@@ -33,10 +23,10 @@ const WIUM_DEPT = () => {
               style={{ width: '25%', borderRadius:"5%"}}
             >
               <div className="box">
-                <a href={box.link} style={{ textDecoration: "none", display: 'block', textAlign:"center"}}>
+                <Link to={'/detail/'+ SHIELD(box.dept, 3)} style={{ textDecoration: "none", display: 'block', textAlign:"center"}}>
                   <div className='responsive-font text-dark' style={{ fontWeight:"bold", fontSize:"1.5vm"}}>{box.dept}</div>
                   <div className='small font-italic text-dark' style={{ fontSize:"0.8em", textAlign:"center" }}><u>{box.kode}</u></div>
-                </a>
+                </Link>
               </div>
             </div>
           ))}
