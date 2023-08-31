@@ -14,7 +14,7 @@ function App() {
         <WIUM_DEPT />
       </section>
 
-      <footer className="text-center">        
+      <footer className="text-center p-3 border">        
         <p className="mb-0"><u>&copy; 2023 WIUM, Jakarta Selatan</u></p>
       </footer>
     </>

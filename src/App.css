@@ -1,3 +1,5 @@
-.responsive-font {
-  font-size: 1.7vw; /* Ukuran font 3% dari lebar layar */
+@media (max-width: 768px) {
+  .responsive-font {
+    font-size: 12px; /* Ubah ukuran font sesuai kebutuhan */
+  }
 }
