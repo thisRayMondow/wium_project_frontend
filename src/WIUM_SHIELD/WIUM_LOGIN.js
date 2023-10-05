@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import SWORD from './SWORD';
 import WIUM_HEADER_2 from '../WIUM_COMPONENTS/WIUM_HEADER_2';
@@ -7,12 +7,22 @@ const WIUM_LOGIN = () => {
   const [number, setNumber] = useState('');
   const [password, setPassword] = useState('');
   const currentURL = window.location.pathname;
-  const currentPath = decodeURIComponent(currentURL.split('/detail/'));
+  const currentPath = decodeURIComponent(currentURL.split('/detail/')[1] || '');
+  const clickCount = useRef(0);
 
   const handleLogin = () => {
     // Implementasi logika login di sini
     console.log('Number:', number);
     console.log('Password:', password);
+  };
+
+  const handleFooterClick = () => {
+    clickCount.current += 1;
+
+    // Jika terjadi tiga klik atau lebih, arahkan ke halaman login
+    if (clickCount.current >= 3) {
+      window.location.href = "http://localhost:8000/log-in"; // Ganti dengan URL halaman login Anda
+    }
   };
 
   return (
@@ -59,8 +69,8 @@ const WIUM_LOGIN = () => {
             </div>
         </section>
 
-        <footer className="text-center p-2 border">        
-            <p className="mb-0"><u>&copy; 2023 WIUM, Jakarta Selatan</u></p>
+        <footer className="text-center p-2 border" onClick={handleFooterClick}>      
+            <p className="mb-0"><u>&copy; 2023 WIUM, Jakarta Selatan</u></p>  
         </footer>
     </>
 
