@@ -14,7 +14,7 @@ const WIUM_DEPT = () => {
 
   // Membagi data menjadi grup 4 elemen
   const groupedData = data.reduce((accumulator, currentValue, index) => {
-    const groupIndex = Math.floor(index / 4);
+    const groupIndex = Math.floor(index / 3);
     if (!accumulator[groupIndex]) {
       accumulator[groupIndex] = [];
     }
@@ -23,16 +23,15 @@ const WIUM_DEPT = () => {
   }, []);
 
   return (
-    <div className="container pb-5 pt-5">
+    <div className="container border border-dark bg-light py-3" style={{ borderRadius:"2px" }}>
       {groupedData.map((row, rowIndex) => (
-        <div key={rowIndex} className="row p-2">
+        <div key={rowIndex} className="row m-2 p-2">
           {row.map((box, boxIndex) => (
             <div
               key={boxIndex}
-              className="col-sm-3 border border-primary p-3 bg-body text-dark"
-              style={{ width: '25%', borderRadius: '5%' }}
+              className="card col-md-4 border border-primary p-2 bg-body text-dark mx-auto"
             >
-              <div className="box">
+              <div className="m-4">
                 <Link
                   to={'/detail/' + SHIELD(box.dept, 3)}
                   style={{ textDecoration: 'none', display: 'block', textAlign: 'center' }}

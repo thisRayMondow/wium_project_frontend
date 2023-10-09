@@ -69,7 +69,7 @@ const WIUM_LOGIN = () => {
             </div>
         </section>
 
-        <footer className="text-center p-2 border" onClick={handleFooterClick}>      
+        <footer className="text-center p-2 border bg-light" onClick={handleFooterClick}>      
             <p className="mb-0"><u>&copy; 2023 WIUM, Jakarta Selatan</u></p>  
         </footer>
     </>
