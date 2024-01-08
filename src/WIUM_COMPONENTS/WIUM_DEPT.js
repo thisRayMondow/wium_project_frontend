@@ -6,7 +6,8 @@ const WIUM_DEPT = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/WIUM_DEPT')
+    // fetch('http://localhost:8000/api/WIUM_DEPT')
+    fetch('http://10.13.0.37:8000/api/WIUM_DEPT')
       .then(response => response.json())
       .then(data => setData(data))
       .catch(error => console.error('Error:', error));

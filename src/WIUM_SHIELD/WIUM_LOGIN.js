@@ -1,19 +1,42 @@
 import React, { useState, useRef} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SWORD from './SWORD';
 import WIUM_HEADER_2 from '../WIUM_COMPONENTS/WIUM_HEADER_2';
+import axios from 'axios';
 
 const WIUM_LOGIN = () => {
-  const [number, setNumber] = useState('');
+  const [user, setNumber] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const history = useNavigate();
+  
   const currentURL = window.location.pathname;
   const currentPath = decodeURIComponent(currentURL.split('/detail/')[1] || '');
   const clickCount = useRef(0);
 
-  const handleLogin = () => {
-    // Implementasi logika login di sini
-    console.log('Number:', number);
-    console.log('Password:', password);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      // const response = await axios.post('http://localhost:8000/api/LOG-IN', {
+        const response = await axios.post('http://10.13.0.37:8000/api/LOG-IN', {
+        user,
+        password,
+      });
+
+      if (response.data.status === "01") {
+        console.log (response.data.access_token);
+
+        // Simpan token ke localStorage
+        localStorage.setItem('token', response.data.access_token);
+
+        history('/dashboard/'+ currentPath);
+      }else{
+        console.log ("Gagal Login");
+        setError('Gagal Login: Pengguna dan Sandi tidak sesuai');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+    }
   };
 
   const handleFooterClick = () => {
@@ -21,7 +44,8 @@ const WIUM_LOGIN = () => {
 
     // Jika terjadi tiga klik atau lebih, arahkan ke halaman login
     if (clickCount.current >= 3) {
-      window.location.href = "http://localhost:8000/log-in"; // Ganti dengan URL halaman login Anda
+      // window.location.href = "http://localhost:8000/log-in"; // Ganti dengan URL halaman login Anda
+      window.location.href = "http://10.13.0.37:8000/log-in"; // Ganti dengan URL halaman login Anda
     }
   };
 
@@ -33,15 +57,16 @@ const WIUM_LOGIN = () => {
 
         <section className="container-fluid bg-primary">
             <div className="row justify-content-center p-5 bg-primary">
-                <div className="col-md-4 bg-info p-4 border border-dark" style={{ borderStyle: "double", borderRadius: "5%" }}>
+                <div className="col-md-4 bg-info p-4 border border-dark" style={{ borderStyle: "double", borderRadius: "5%" }}> 
                 <div className="login-form p-3">
-                    <h4 className="text-center mb-4 border border-danger">{SWORD(currentPath, 3).replace(",", "")}</h4>
+                    <h4 className="text-center mb-4 p-4 border border-light">{SWORD(currentPath, 3).replace(",", "")}</h4>
+                    {error && <p className="text-danger text-center">{error}</p>}
                     <div className="mb-3">
                     <input
                         type="text"
                         className="form-control"
                         placeholder="USER"
-                        value={number}
+                        value={user}
                         onChange={(e) => setNumber(e.target.value)}
                         required
                     />

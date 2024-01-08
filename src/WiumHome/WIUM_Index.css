@@ -1,0 +1,38 @@
+body, html, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.d-flex {
+  height: 100%;
+}
+
+.sidebar {
+  width: 20%;
+  height: 100vh; /* Buat sidebar full height */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding-top: 20px;
+  background-color: #111f2c;
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: 100%;
+  padding-bottom: 48px;
+  overflow-y: auto;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.main-content {
+  width: 80%;
+  margin-left: 20%;
+}
